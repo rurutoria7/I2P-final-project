@@ -25,7 +25,7 @@ static int gameTitleH ;
 // STRONGLY recommend you trace both of them first. 
 
 //	[HACKATHON 3-1]
-//	TODO: Declare variable for button
+//	DONE: Declare variable for button
 //	Uncomment and fill the code below
 // static ... btnSettings;
 static Button btnSettings;
@@ -33,7 +33,7 @@ static Button btnSettings;
 static void init() {
 
 	// [HACKATHON 3-2]
-	// TODO: Create button to settings
+	// DONE: Create button to settings
 	//	Uncomment and fill the code below
 	btnSettings = button_create(730, 20, 50, 50, "Assets/settings.png", "Assets/settings2.png");
 
@@ -73,7 +73,7 @@ static void draw() {
 	);
 
 		// [HACKATHON 3-3]
-		// TODO: Draw button
+		// DONE: Draw button
 		// Uncomment and fill the code below
 		// drawButton(...);
     drawButton(btnSettings);
@@ -82,14 +82,14 @@ static void draw() {
 
 static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
 	//	[HACKATHON 3-7]
-	//	TODO: Update button's status(hovered), and utilize the function `pnt_in_rect`, which you just implemented
+	//	DONE: Update button's status(hovered), and utilize the function `pnt_in_rect`, which you just implemented
 	//	Uncomment and fill the code below
     btnSettings.hovered = buttonHover(btnSettings, mouse_x, mouse_y);
 }
 
 
 //	[HACKATHON 3-8]
-//	TODO: When btnSettings clicked, switch to settings scene
+//	DONE: When btnSettings clicked, switch to settings scene
 //  `game_change_scene` is defined in `game.h`.
 //  You can check line 121 `scene_menu.c` to see how to use this function.
 //  And find the corresponding function for `scene_setting`
@@ -107,7 +107,7 @@ static void destroy() {
 	stop_bgm(menuBGM);
 	al_destroy_bitmap(gameTitle);
 	//	[HACKATHON 3-10]
-	//	TODO: Destroy button images
+	//	DONE: Destroy button images
 	//	Uncomment and fill the code below
 	al_destroy_bitmap(btnSettings.default_img);
 	al_destroy_bitmap(btnSettings.hovered_img);
@@ -142,7 +142,7 @@ Scene scene_menu_create(void) {
 	scene.on_key_down = &on_key_down;
 	scene.on_mouse_move = &on_mouse_move;
 	// [HACKATHON 3-9]
-	// TODO: Register on_mouse_down.
+	// DONE: Register on_mouse_down.
 	// Uncomment the code below.
 	scene.on_mouse_down = &on_mouse_down;
 	// -------------------------------------

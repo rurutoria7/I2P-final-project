@@ -76,7 +76,7 @@ uint32_t generateRandomNumber(uint32_t a, uint32_t b);
 double generateRandomFloat(void);
 bool bernoulliTrail(double p); // Given a Possibility and decided if occur.
 // [HACKATHON 3-4]
-// TODO: Declare a function.
+// DONE: Declare a function.
 // Determines whether the point (px, py) is in rect (x, y, w, h).
 // Uncomment the code below.
 bool pnt_in_rect(int px, int py, RecArea field);

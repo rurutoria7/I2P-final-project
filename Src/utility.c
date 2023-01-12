@@ -83,7 +83,7 @@ ALLEGRO_BITMAP* load_bitmap_resized(const char* filename, int w, int h) {
 }
 
 // [HACKATHON 3-5]
-// TODO: Define bool pnt_in_rect(int px, int py, RecArea field)
+// DONE: Define bool pnt_in_rect(int px, int py, RecArea field)
 // Uncomment and fill in the code below.
 bool pnt_in_rect(int px, int py, RecArea RA) {
     // TODO: Determine it is [,] or [,)
@@ -99,7 +99,7 @@ void setRecArea(RecArea* RA, float x, float y, float w, float h) {
 }
 // Hakathon
 bool RecAreaOverlap(const RecArea RA,const RecArea RB) {
-	// [TODO]
+	// [TODO?]
 	// Detect if two RecArea is overlapped.
 	float RA_x2 = RA.x + RA.w;
 	float RA_y2 = RA.y + RA.h;

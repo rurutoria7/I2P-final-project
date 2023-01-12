@@ -30,7 +30,7 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
 	ghost_NextMove(ghost, dir_to_move);
     ghost->last_dir = dir_to_move;
 
-	// [TODO] (Not in Hackathon) 
+	// [DONE] (Not in Hackathon)
 	// Description:
 	// For red(Blinky) ghost, we ask you to implement an random strategy ghost, 
 	// which means moving in random direction.

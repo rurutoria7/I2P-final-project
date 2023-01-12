@@ -49,7 +49,7 @@ static void init(void) {
 	game_main_Score = 0;
 	// create map
 //	basic_map = create_map(NULL);
-	// [TODO]
+	// [DONE]
 	// Create map from .txt file and design your own map !!
     basic_map = create_map("Assets/map_nthu.txt");
 	if (!basic_map) {
@@ -63,14 +63,14 @@ static void init(void) {
 	
 	// allocate ghost memoryF
 	// [HACKATHON 2-1]
-	// TODO: Allocate dynamic memory for ghosts array.
-	ghosts = (Ghost*)malloc(sizeof(Ghost*) * GHOST_NUM);
+	// DONE: Allocate dynamic memory for ghosts array.
+	ghosts = (Ghost**)malloc(sizeof(Ghost*) * GHOST_NUM);
 	if(!ghosts){
 		game_log("We haven't create any ghosts!\n");
 	}
 	else {
 		// [HACKATHON 2-2]
-		// TODO: create a ghost.
+		// DONE: create a ghost.
 		// Try to look the definition of ghost_create and figure out what should be placed here.
 		for (int i = 0; i < GHOST_NUM; i++) {
 			game_log("creating ghost %d\n", i);
@@ -102,7 +102,7 @@ static void checkItem(void) {
 	if (Grid_y >= basic_map->row_num - 1 || Grid_y <= 0 || Grid_x >= basic_map->col_num - 1 || Grid_x <= 0)
 		return;
 	// [HACKATHON 1-3]
-	// TODO: check which item you are going to eat and use `pacman_eatItem` to deal with it.
+	// DONE: check which item you are going to eat and use `pacman_eatItem` to deal with it.
 	switch (basic_map->map[Grid_y][Grid_x])
 	{
 	case '.':
@@ -119,7 +119,7 @@ static void status_update(void) {
 	for (int i = 0; i < GHOST_NUM; i++) {
 		if (ghosts[i]->status == GO_IN)
 			continue;
-		// [TODO]
+		// [TODO] on pacman and ghosts collide
 		// use `getDrawArea(..., GAME_TICK_CD)` and `RecAreaOverlap(..., GAME_TICK_CD)` functions to detect
 		// if pacman and ghosts collide with each other.
 		// And perform corresponding operations.
@@ -224,7 +224,7 @@ static void on_key_down(int key_code) {
 	switch (key_code)
 	{
 		// [HACKATHON 1-1]	
-		// TODO: Use allegro pre-defined enum ALLEGRO_KEY_<KEYNAME> to controll pacman movement
+		// DONE: Use allegro pre-defined enum ALLEGRO_KEY_<KEYNAME> to controll pacman movement
 		// we provided you a function `pacman_NextMove` to set the pacman's next move direction.
 		case ALLEGRO_KEY_W:
 			pacman_NextMove(pman, UP);

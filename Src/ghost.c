@@ -81,8 +81,7 @@ void ghost_draw(Ghost* ghost) {
 	);
 
 	/*
-		[TODO]
-		Draw ghost according to its status
+		[TODO] Draw ghost according to its status
 		hint : use ghost->objData.moveCD value to determine which frame of the animation to draw.
 
 			A not so good way is:
