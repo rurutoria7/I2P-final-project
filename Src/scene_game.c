@@ -119,7 +119,7 @@ static void status_update(void) {
 	for (int i = 0; i < GHOST_NUM; i++) {
 		if (ghosts[i]->status == GO_IN)
 			continue;
-		// [TODO] on pacman and ghosts collide
+		// [TODO] on pacman and ghosts collide, power bean mode.
 		// use `getDrawArea(..., GAME_TICK_CD)` and `RecAreaOverlap(..., GAME_TICK_CD)` functions to detect
 		// if pacman and ghosts collide with each other.
 		// And perform corresponding operations.
@@ -213,10 +213,15 @@ static void printinfo(void) {
 
 static void destroy(void) {
 	/*
-		[TODO]
+		[DONE]
 		free map array, Pacman and ghosts
 	*/
-}
+    delete_map(basic_map);
+    pacman_destroy(pman);
+    for (int i = 0; i < GHOST_NUM; i++){
+        ghost_destory(ghosts[i]);
+    }
+};
 
 static void on_key_down(int key_code) {
 	switch (key_code)
@@ -292,7 +297,7 @@ Scene scene_main_create(void) {
 	scene.draw = &draw;
 	scene.destroy = &destroy;
 	scene.on_key_down = &on_key_down;
-	scene.on_mouse_down = &on_mouse_down;
+	scene.on_mouse_down = (func_ptr_mouse)&on_mouse_down;
 	// TODO: Register more event callback functions such as keyboard, mouse, ...
 	game_log("Start scene created");
 	return scene;
