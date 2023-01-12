@@ -126,8 +126,7 @@ static void status_update(void) {
 		// [NOTE]
 		// You should have some branch here if you want to implement power bean mode.
 		// Uncomment Following Code
-		/*
-		if(!cheat_mode and collision of pacman and ghost)
+		if(!cheat_mode && RecAreaOverlap(getDrawArea(pman->objData, GAME_TICK), getDrawArea(ghosts[i]->objData, GAME_TICK)))
 		{
 			game_log("collide with ghost\n");
 			al_rest(1.0);
@@ -135,7 +134,6 @@ static void status_update(void) {
 			game_over = true;
 			break;
 		}
-		*/
 	}
 }
 
