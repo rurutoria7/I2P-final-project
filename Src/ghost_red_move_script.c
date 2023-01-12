@@ -24,7 +24,7 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
             proba[cnt++] = i;
     if (cnt == 0)
         for (Directions i = 1; i <= 4; i++)
-            if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->last_dir, i))
+            if (ghost_movable(ghost, M, i, true))
                 proba[cnt++] = i;
     int dir_to_move = proba[generateRandomNumber(0,cnt-1)];
 	ghost_NextMove(ghost, dir_to_move);
