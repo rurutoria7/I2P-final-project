@@ -28,13 +28,14 @@ static int gameTitleH ;
 //	TODO: Declare variable for button
 //	Uncomment and fill the code below
 // static ... btnSettings;
+static Button btnSettings;
 
 static void init() {
 
 	// [HACKATHON 3-2]
 	// TODO: Create button to settings
 	//	Uncomment and fill the code below
-	//btnSettings = button_create(730, 20, 50, 50, "...", "...");
+	btnSettings = button_create(730, 20, 50, 50, "Assets/settings.png", "Assets/settings2.png");
 
 	gameTitle = load_bitmap("Assets/title.png");
 	gameTitleW = al_get_bitmap_width(gameTitle);
@@ -75,6 +76,7 @@ static void draw() {
 		// TODO: Draw button
 		// Uncomment and fill the code below
 		// drawButton(...);
+    drawButton(btnSettings);
 
 }
 
@@ -82,7 +84,7 @@ static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
 	//	[HACKATHON 3-7]
 	//	TODO: Update button's status(hovered), and utilize the function `pnt_in_rect`, which you just implemented
 	//	Uncomment and fill the code below
-	//	 btnSettings.hovered = ???(btnSettings, mouse_x, mouse_y);
+    btnSettings.hovered = buttonHover(btnSettings, mouse_x, mouse_y);
 }
 
 
@@ -94,14 +96,12 @@ static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
 // 	Utilize the member defined in struct `Button`.
 //  The logic here is 
 //  `if clicked the mouse` && `mouse position is in the area of button`
-// 	      `Enter the setting scene`
+// 	      ```Enter the setting scene`
 //	Uncomment and fill the code below
-/*
 static void on_mouse_down() {
-	if (btnSettings.???)
-		game_change_scene(...);
+	if (btnSettings.hovered)
+		game_change_scene(scene_settings_create());
 }
-*/
 
 static void destroy() {
 	stop_bgm(menuBGM);
@@ -109,10 +109,8 @@ static void destroy() {
 	//	[HACKATHON 3-10]
 	//	TODO: Destroy button images
 	//	Uncomment and fill the code below
-	/*
-	al_destroy_bitmap(...);
-	al_destroy_bitmap(...);
-	*/
+	al_destroy_bitmap(btnSettings.default_img);
+	al_destroy_bitmap(btnSettings.hovered_img);
 }
 
 static void on_key_down(int keycode) {
@@ -146,9 +144,7 @@ Scene scene_menu_create(void) {
 	// [HACKATHON 3-9]
 	// TODO: Register on_mouse_down.
 	// Uncomment the code below.
-	/*
 	scene.on_mouse_down = &on_mouse_down;
-	*/
 	// -------------------------------------
 
 

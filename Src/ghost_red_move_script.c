@@ -17,13 +17,18 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
 	// [HACKATHON 2-4]
 	// Uncomment the following code and finish pacman picking random direction.
 
-	/*
 	static Directions proba[4]; // possible movement
 	int cnt = 0;
 	for (Directions i = 1; i <= 4; i++)
-		if (ghost_movable(...)) 	proba[cnt++] = i;
-	ghost_NextMove(ghost, proba[pick a reasonable random number]);
-	*/
+		if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->last_dir, i))
+            proba[cnt++] = i;
+    if (cnt == 0)
+        for (Directions i = 1; i <= 4; i++)
+            if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->last_dir, i))
+                proba[cnt++] = i;
+    int dir_to_move = proba[generateRandomNumber(0,cnt-1)];
+	ghost_NextMove(ghost, dir_to_move);
+    ghost->last_dir = dir_to_move;
 
 	// [TODO] (Not in Hackathon) 
 	// Description:

@@ -26,7 +26,7 @@ extern float effect_volume;
 /* Declare static function */
 static bool pacman_movable(Pacman* pacman, Map* M, Directions targetDirec) {
 	// [HACKATHON 1-2]
-	// TODO: Determine if the current direction is movable.
+	// DONE: Determine if the current direction is movable.
 	// That is to say, your pacman shouldn't penetrate 'wall' and 'room'
 	// , where room is reserved for ghost to set up.
 	// 1) For the current direction `targetDirec`, use pre-implemented function
@@ -34,33 +34,36 @@ static bool pacman_movable(Pacman* pacman, Map* M, Directions targetDirec) {
 	// 2) the coordinate data of pacman is stored in pacman->objData.Coord
 	// it is a self-defined pair IntInt type. Trace the code and utilize it.
 
-	/*
-	... pacman->objData.Coord.x, ... pacman->objData.Coord.y;
-	
-	switch (targetDirec)
-	{
-	case UP:
-		...
-	case DOWN:
-		...
-	case LEFT:
-		...
-	case RIGHT:
-		...
-	default:
-		// for none UP, DOWN, LEFT, RIGHT direction u should return false.
-		return false;
-	}
-	if (is_wall_block(M, ..., ...) || is_room_block(M, ..., ...))
-		return false;
-	*/
-	return true;
+    int x = pacman->objData.Coord.x, y = pacman->objData.Coord.y;
+
+    switch (targetDirec)
+    {
+        case UP:
+            y--;
+            break;
+        case DOWN:
+            y++;
+            break;
+        case LEFT:
+            x--;
+            break;
+        case RIGHT:
+            x++;
+            break;
+        default:
+            // for none UP, DOWN, LEFT, RIGHT direction u should return false.
+            return false;
+    }
+
+    if (is_wall_block(M, x, y) || (is_room_block(M, x, y)))
+        return false;
+    return true;
 }
 
 Pacman* pacman_create() {
 
 	/*
-		[TODO]
+		[DONE]
 		Allocate dynamic memory for pman pointer;
 	*/
 	Pacman* pman = (Pacman*)malloc(sizeof(Pacman));
@@ -95,20 +98,23 @@ Pacman* pacman_create() {
 
 void pacman_destroy(Pacman* pman) {
 	/*
-		[TODO]
+		[DONE]
 		free pacman resource
 		al_destroy_bitmap(pman->...);
 		al_destroy_timer(pman->...);
 		...
 		free(pman);
 	*/
+    al_destroy_bitmap(pman->move_sprite);
+    al_destroy_bitmap(pman->die_sprite);
+    al_destroy_timer(pman->death_anim_counter);
+    free(pman);
 }
 
 
 void pacman_draw(Pacman* pman) {
 	/*
-		[HW-TODO ]
-		Draw Pacman and animations
+		[TODO] Draw Pacman and animations
 		hint: use pman->objData.moveCD to determine which frame of the animation to draw, you may refer to discription in ghost_draw in ghost.c
 	*/
 	RecArea drawArea = getDrawArea(pman->objData, GAME_TICK_CD);

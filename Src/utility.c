@@ -85,11 +85,11 @@ ALLEGRO_BITMAP* load_bitmap_resized(const char* filename, int w, int h) {
 // [HACKATHON 3-5]
 // TODO: Define bool pnt_in_rect(int px, int py, RecArea field)
 // Uncomment and fill in the code below.
-/*
-bool pnt_in_rect(int px, int py, RecArea field) {
-	return ???;
+bool pnt_in_rect(int px, int py, RecArea RA) {
+    // TODO: Determine it is [,] or [,)
+    float u = RA.y, d = RA.y+RA.h, l = RA.x, r = RA.x+RA.w;
+    return u <= py && py <= d && l <= px && px <= r;
 }
-*/
 
 void setRecArea(RecArea* RA, float x, float y, float w, float h) {
 	RA->x = x;
@@ -199,4 +199,15 @@ bool bernoulliTrail(double p) {
 		game_abort("Error range of p = %lf in BernoulliTrail func\n But p should be between 0.0 and 1.0", p);
 	return generateRandomFloat() < p;
 	
+}
+
+bool is_backward(Directions a, Directions b){
+    if (b < a){
+        a = a^b;
+        b = a^b;
+        a = a^b;
+    }
+    if (a == UP) return b == DOWN;
+    if (a == LEFT) return b == RIGHT;
+    return false;
 }

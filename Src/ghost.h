@@ -41,6 +41,7 @@ typedef struct Ghost{
 	ALLEGRO_BITMAP* move_sprite;
 	ALLEGRO_BITMAP* flee_sprite;
 	ALLEGRO_BITMAP* dead_sprite;
+    Directions last_dir;
 } Ghost;
 
 Ghost* ghost_create(int flag);

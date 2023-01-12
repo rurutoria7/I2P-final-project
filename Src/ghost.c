@@ -45,6 +45,8 @@ Ghost* ghost_create(int flag) {
 	ghost->flee_sprite = load_bitmap("Assets/ghost_flee.png");
 	ghost->dead_sprite = load_bitmap("Assets/ghost_dead.png");
 
+    ghost->last_dir = NONE;
+
 	switch (ghost->typeFlag) {
 	case Blinky:
 		ghost->objData.Coord.x = cage_grid_x;
@@ -62,14 +64,10 @@ Ghost* ghost_create(int flag) {
 	return ghost;
 }
 void ghost_destory(Ghost* ghost) {
-	/*
-		[TODO]
-		free ghost resource
-
-		al_destory_bitmap(...);
-		...
-		free(ghost);
-	*/
+    al_destroy_bitmap(ghost->move_sprite);
+    al_destroy_bitmap(ghost->dead_sprite);
+    al_destroy_bitmap(ghost->flee_sprite);
+    free(ghost);
 }
 void ghost_draw(Ghost* ghost) {
 	// getDrawArea return the drawing RecArea defined by objData and GAME_TICK_CD
@@ -98,6 +96,7 @@ void ghost_draw(Ghost* ghost) {
 
 			since modulo operation is expensive, better avoid using it.
 	*/
+
 
 	int bitmap_x_offset = 0;
 	// [TODO] below is for animation usage, change the sprite you want to use.
@@ -159,30 +158,30 @@ bool ghost_movable(Ghost* ghost, Map* M, Directions targetDirec, bool room) {
 	// So if you have finished (and you should), you can just "copy and paste"
 	// and do some small alternation.
 
-	/*
-	... ghost->objData.Coord.x, ... ghost->objData.Coord.y;
+	int x = ghost->objData.Coord.x, y = ghost->objData.Coord.y;
 
 	switch (targetDirec)
 	{
-	case UP:
-		...
-	case DOWN:
-		...
-	case LEFT:
-		...
-	case RIGHT:
-		...
-	default:
-		// for none UP, DOWN, LEFT, RIGHT direction u should return false.
-		return false;
+        case UP:
+            y--;
+            break;
+        case DOWN:
+            y++;
+            break;
+        case LEFT:
+            x--;
+            break;
+        case RIGHT:
+            x++;
+            break;
+        default:
+            // for none UP, DOWN, LEFT, RIGHT direction u should return false.
+            return false;
 	}
 
-	if (is_wall_block(M, ..., ...) || (room && is_room_block(M, ..., ...)))
+	if (is_wall_block(M, x, y) || (room && is_room_block(M, x, y)))
 		return false;
-	*/
-
 	return true;
-
 }
 
 void ghost_toggle_FLEE(Ghost* ghost, bool setFLEE) {

@@ -87,7 +87,7 @@ const char* default_map[] = {
 Map* create_map(const char * filepath) {
 
 // [HACKATHON 0]
-// TODO: Read the map from "Assets/map_nthu.txt"
+// DONE: Read the map from "Assets/map_nthu.txt"
 // ~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!~~~~~~~~~
 // Description: So for this part, you don't have to really finish them during hackathon.
 // You can just copy the map data in "map_nthu.txt" to the array `default_map`
@@ -96,62 +96,59 @@ Map* create_map(const char * filepath) {
 // the grading part in Basic part in Final_Project_Rules.
 /* ----------------------------- start of default map code*/
 
-	Map* M = (Map*)malloc(sizeof(Map));
-	FILE* pFile = NULL;
-	if (!M) {
-		game_abort("Error when creating Map");
-		return NULL;
-	}
-	if (filepath == NULL) {
-		M->row_num = 30;
-		M->col_num = 36;
-		game_log("Creating from default map. row = %d col = %d", M->row_num, M->col_num);
-		
-	}
-	else {
-		// [HACKATHON 0-1]
-		// use fopen to create a file FILE* type
-		// use pFile can fscanf do reading from file just like read from command line.
-		/*
-		game_log("%s\n", filepath);
-		pFile = fopen(...);
-		if (!pFile) {
-			game_abort("error to open map file\n");
-			return NULL;
-		}
-		if(fscanf(...) != 2) {
-			game_abort("Map format unmatched\n");
-			return NULL;
-		}
-		getc(pFile); // get the '\n'
-		*/
-	}
+    Map *M = (Map *) malloc(sizeof(Map));
+    FILE *pFile = NULL;
+    if (!M) {
+        game_abort("Error when creating Map");
+        return NULL;
+    }
+    if (filepath == NULL) {
+        M->row_num = 30;
+        M->col_num = 36;
+        game_log("Creating from default map. row = %d col = %d", M->row_num, M->col_num);
 
-	/*
-	[TODO]
-	Allocate a 2-Dimension dynamic char array for recording Map 
-	*/
-	M->map = (char**)malloc(sizeof(char*) * M->row_num);
-	if (!M->map) {
-		game_abort(stderr, "map char array malloc error\n");
-		return NULL;
-	}
-	for (int i = 0; i < M->row_num; i++) {
-		M->map[i] = (char*)malloc(sizeof(char) * (M->col_num));
-		if(!M->map[i]){
-			game_abort(stderr, "map char array malloc error\n");
-			return NULL;
-		}
-	}
-	/*
-		[TODO]
-		read file to map[row][col] 
-		'#' -> wall
-		'.' -> beans
-		'B' -> room of ghost
-		'P' -> Power Pellets
-	*/
+    } else {
+        // [HACKATHON 0-1]
+        // use fopen to create a file FILE* type
+        // use pFile can fscanf do reading from file just like read from command line.
 
+        game_log("%s\n", filepath);
+        pFile = fopen("Assets/map_nthu.txt", "r");
+        if (!pFile) {
+            game_abort("error to open map file\n");
+            return NULL;
+        }
+        if (fscanf(pFile, "%d%d", &(M->row_num), &(M->col_num)) != 2) {
+            game_abort("Map format unmatched\n");
+            return NULL;
+        }
+        getc(pFile); // get the '\n'
+    }
+
+    /*
+    [DONE]
+    Allocate a 2-Dimension dynamic char array for recording Map
+    */
+    M->map = (char **) malloc(sizeof(char *) * M->row_num);
+    if (!M->map) {
+        game_abort(stderr, "map char array malloc error\n");
+        return NULL;
+    }
+    for (int i = 0; i < M->row_num; i++) {
+        M->map[i] = (char *) malloc(sizeof(char) * (M->col_num));
+        if (!M->map[i]) {
+            game_abort(stderr, "map char array malloc error\n");
+            return NULL;
+        }
+    }
+    /*
+        [DONE]
+        read file to map[row][col]
+        '#' -> wall
+        '.' -> beans
+        'B' -> room of ghost
+        'P' -> Power Pellets
+    */
 	M->wallnum = M->beansCount = 0;
 	for (int i = 0; i < M->row_num; i++) {
 		for (int j = 0; j < M->col_num; j++) {
@@ -163,9 +160,7 @@ Map* create_map(const char * filepath) {
 			else
 				// [HACKATHON 0-2]
 				// read the map from file just like read from default_map
-				/*
-				fscanf(...);
-				*/
+                fscanf(pFile, "%c", &(M->map[i][j]));
 			switch(M->map[i][j]) {
 			case '#':
 				M->wallnum++;
@@ -187,15 +182,10 @@ Map* create_map(const char * filepath) {
 void delete_map(Map* M) {
 	if (!M)
 		return;
-	// [TODO]
-	// you should free the dynamic allocated part of Map* M at here;
-	/*
-	if(M->map)
-	{
-		...
-		free(...)
-		...
-	*/
+	// [DONE] you should free the dynamic allocated part of Map* M at here;
+	if(M->map) {
+        free(M->map);
+    }
 	free(M);
 }
 
@@ -206,7 +196,7 @@ void draw_map(Map const* M) {
 		return;
 	}
 	/*
-		[TODO]
+		[DONE]
 		draw the map according to M->map
 	*/
 	for (int row = 0; row < M->row_num; row++) {
@@ -216,13 +206,11 @@ void draw_map(Map const* M) {
 				case '#':
 					draw_block_index(M, row, col);
 					break;
-				// [ TODO ]
+				// [ DONE ]
 				// draw the power bean
-				/*
 				case 'P':
-					draw_power_bean(...);
+					draw_power_bean(M, row, col);
 					break;
-				*/
 				case '.':
 					draw_bean(M, row, col);
 					break;

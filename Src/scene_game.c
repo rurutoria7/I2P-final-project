@@ -13,7 +13,7 @@
 
 // [HACKATHON 2-0]
 // Just modify the GHOST_NUM to 1
-#define GHOST_NUM 0 
+#define GHOST_NUM 1
 /* global variables*/
 extern const uint32_t GAME_TICK_CD;
 extern uint32_t GAME_TICK;
@@ -48,10 +48,10 @@ static void init(void) {
 	game_over = false;
 	game_main_Score = 0;
 	// create map
-	basic_map = create_map(NULL);
+//	basic_map = create_map(NULL);
 	// [TODO]
 	// Create map from .txt file and design your own map !!
-	// basic_map = create_map("Assets/map_nthu.txt");
+    basic_map = create_map("Assets/map_nthu.txt");
 	if (!basic_map) {
 		game_abort("error on creating map");
 	}	
@@ -61,12 +61,10 @@ static void init(void) {
 		game_abort("error on creating pacamn\n");
 	}
 	
-	// allocate ghost memory
+	// allocate ghost memoryF
 	// [HACKATHON 2-1]
 	// TODO: Allocate dynamic memory for ghosts array.
-	/*
-	ghosts = (...)malloc(sizeof(...) * GHOST_NUM)
-	*/
+	ghosts = (Ghost*)malloc(sizeof(Ghost*) * GHOST_NUM);
 	if(!ghosts){
 		game_log("We haven't create any ghosts!\n");
 	}
@@ -75,12 +73,10 @@ static void init(void) {
 		// TODO: create a ghost.
 		// Try to look the definition of ghost_create and figure out what should be placed here.
 		for (int i = 0; i < GHOST_NUM; i++) {
-			/*
 			game_log("creating ghost %d\n", i);
-			ghosts[i] = ghost_create(...);  
+			ghosts[i] = ghost_create(0);
 			if (!ghosts[i])
 				game_abort("error creating ghost\n");
-			*/
 		}
 	}
 	GAME_TICK = 0;
@@ -107,21 +103,17 @@ static void checkItem(void) {
 		return;
 	// [HACKATHON 1-3]
 	// TODO: check which item you are going to eat and use `pacman_eatItem` to deal with it.
-	/*
-	switch (basic_map->map...)
+	switch (basic_map->map[Grid_y][Grid_x])
 	{
 	case '.':
-		pacman_eatItem(...);
+		pacman_eatItem(pman, basic_map->map[Grid_y][Grid_x]);
 	default:
 		break;
 	}
-	*/
 	// [HACKATHON 1-4]
 	// erase the item you eat from map
 	// be careful no erasing the wall block.
-	/*
-		basic_map->map...;
-	*/
+    basic_map->map[Grid_y][Grid_x] = ' ';
 }
 static void status_update(void) {
 	for (int i = 0; i < GHOST_NUM; i++) {
@@ -234,18 +226,17 @@ static void on_key_down(int key_code) {
 		// [HACKATHON 1-1]	
 		// TODO: Use allegro pre-defined enum ALLEGRO_KEY_<KEYNAME> to controll pacman movement
 		// we provided you a function `pacman_NextMove` to set the pacman's next move direction.
-		/*
 		case ALLEGRO_KEY_W:
-			pacman_NextMove(pman, ...);
+			pacman_NextMove(pman, UP);
 			break;
 		case ALLEGRO_KEY_A:
-			pacman_NextMove(pman, ...);
+			pacman_NextMove(pman, LEFT);
 			break;
 		case ALLEGRO_KEY_S:
-			pacman_NextMove(pman, ...);
+			pacman_NextMove(pman, DOWN);
 			break;
 		case ALLEGRO_KEY_D:
-			pacman_NextMove(pman, ...);
+			pacman_NextMove(pman, RIGHT);
 			break;
 		case ALLEGRO_KEY_C:
 			cheat_mode = !cheat_mode;
@@ -257,7 +248,6 @@ static void on_key_down(int key_code) {
 		case ALLEGRO_KEY_G:
 			debug_mode = !debug_mode;
 			break;
-		*/
 	default:
 		break;
 	}
