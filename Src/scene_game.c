@@ -14,7 +14,7 @@
 
 // [HACKATHON 2-0]
 // Just modify the GHOST_NUM to 1
-#define GHOST_NUM 1
+#define GHOST_NUM 4
 /* global variables*/
 extern const uint32_t GAME_TICK_CD;
 extern uint32_t GAME_TICK;
@@ -75,7 +75,7 @@ static void init(void) {
 		// Try to look the definition of ghost_create and figure out what should be placed here.
 		for (int i = 0; i < GHOST_NUM; i++) {
 			game_log("creating ghost %d\n", i);
-			ghosts[i] = ghost_create(0);
+			ghosts[i] = ghost_create(i%4);
 			if (!ghosts[i])
 				game_abort("error creating ghost\n");
 		}
@@ -112,9 +112,10 @@ static void checkItem(void) {
             break;
         case 'P':
             for (int i = 0; i < GHOST_NUM; i++){
-                if (ghosts[i]->status == FREEDOM){
+                if (ghosts[i]->status == FREEDOM || ghosts[i]->status == FLEE){
                     ghosts[i]->status = FLEE;
                     ghosts[i]->is_near_power_up_expire = false;
+                    ghosts[i]->speed = 1;
                 }
             }
             pman->powerUp = true;
@@ -148,10 +149,17 @@ static void status_update(void) {
 		if(!cheat_mode && RecAreaOverlap(getDrawArea(pman->objData, GAME_TICK_CD), getDrawArea(ghosts[i]->objData, GAME_TICK_CD)))
 		{
 			game_log("collide with ghost\n");
-			al_rest(1.0);
-			pacman_die();
-			game_over = true;
-			break;
+
+            if (ghosts[i]->status == FREEDOM){
+			    al_rest(1.0);
+                pacman_die();
+                game_over = true;
+                break;
+            }
+            else if (ghosts[i]->status == FLEE){
+                ghost_collided(ghosts[i]);
+            }
+
 		}
 	}
 
@@ -165,8 +173,10 @@ static void status_update(void) {
 
     if (al_get_timer_count(power_up_timer) > power_up_duration){
         for (int i = 0; i < GHOST_NUM; i++)
-            if (ghosts[i]->status == FLEE)
+            if (ghosts[i]->status == FLEE){
                 ghosts[i]->status = FREEDOM;
+                ghosts[i]->speed = 2;
+            }
         pman->powerUp = false;
         al_stop_timer(power_up_timer);
     }

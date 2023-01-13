@@ -13,7 +13,7 @@ static ALLEGRO_SAMPLE_ID PACMAN_MOVESOUND_ID;
 // totally understand the meaning of speed and function
 // `step()` in `scene_game.c`, also the relationship between
 // `speed`, `GAME_TICK`, `GAME_TICK_CD`, `objData->moveCD`.
-static const int basic_speed = 2;
+static const int basic_speed = 2; // TODO: basic speed modified due to debug, it should be 2 by default
 
 /* Shared variables */
 extern ALLEGRO_SAMPLE* PACMAN_MOVESOUND;

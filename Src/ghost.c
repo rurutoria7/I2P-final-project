@@ -49,18 +49,30 @@ Ghost* ghost_create(int flag) {
     ghost->last_dir = NONE;
 
 	switch (ghost->typeFlag) {
-	case Blinky:
-		ghost->objData.Coord.x = cage_grid_x;
-		ghost->objData.Coord.y = cage_grid_y;
-		ghost->move_sprite = load_bitmap("Assets/ghost_move_red.png");
-		ghost->move_script = &ghost_red_move_script;
-		break;
-	default:
-		ghost->objData.Coord.x = cage_grid_x;
-		ghost->objData.Coord.y = cage_grid_y;
-		ghost->move_sprite = load_bitmap("Assets/ghost_move_red.png");
-		ghost->move_script = &ghost_red_move_script;
-		break;
+        case Blinky:
+            ghost->objData.Coord.x = cage_grid_x;
+            ghost->objData.Coord.y = cage_grid_y;
+            ghost->move_sprite = load_bitmap("Assets/ghost_move_red.png");
+            ghost->move_script = &ghost_red_move_script;
+            break;
+        case Pinky:
+            ghost->objData.Coord.x = cage_grid_x;
+            ghost->objData.Coord.y = cage_grid_y;
+            ghost->move_sprite = load_bitmap("Assets/ghost_move_pink.png");
+            ghost->move_script = &ghost_red_move_script;
+            break;
+        case Inky:
+            ghost->objData.Coord.x = cage_grid_x;
+            ghost->objData.Coord.y = cage_grid_y;
+            ghost->move_sprite = load_bitmap("Assets/ghost_move_orange.png");
+            ghost->move_script = &ghost_red_move_script;
+            break;
+        case Clyde:
+            ghost->objData.Coord.x = cage_grid_x;
+            ghost->objData.Coord.y = cage_grid_y;
+            ghost->move_sprite = load_bitmap("Assets/ghost_move_blue.png");
+            ghost->move_script = &ghost_red_move_script;
+            break;
 	}
 	return ghost;
 }
@@ -94,12 +106,15 @@ void ghost_draw(Ghost* ghost) {
         );
     }
 	else if (ghost->status == GO_IN) {
-		/*
-		switch (ghost->objData.facing)
-		{
-		case LEFT:
-			...
-		*/
+        int face_to_asset_ord[] = {0, 2, 1, 0, 3};
+        int face = (1 <= ghost->objData.facing && ghost->objData.facing <= 4)? ghost->objData.facing : 1;
+        al_draw_scaled_bitmap(ghost->dead_sprite,
+                              (face_to_asset_ord[face])*16,
+                              0,
+                              16,16,
+                              drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                              draw_region, draw_region, 0
+        );
 	}
 	else {
         int ouo = (((ghost->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
