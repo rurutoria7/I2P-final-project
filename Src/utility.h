@@ -83,5 +83,8 @@ bool pnt_in_rect(int px, int py, RecArea field);
 // -------------------------
 bool is_backward(Directions a, Directions b);
 
+int max(int x, int y);
+int min(int x, int y);
+
 // TODO: More functions that can be reused across different scenes.
 #endif
