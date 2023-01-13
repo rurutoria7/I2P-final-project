@@ -74,31 +74,17 @@ void ghost_draw(Ghost* ghost) {
 	RecArea drawArea = getDrawArea(ghost->objData, GAME_TICK_CD);
 
 	//Draw default image
-	al_draw_scaled_bitmap(ghost->move_sprite, 0, 0,
-		16, 16,
-		drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-		draw_region, draw_region, 0
-	);
-
-	/*
-		[TODO] Draw ghost according to its status
-		hint : use ghost->objData.moveCD value to determine which frame of the animation to draw.
-
-			A not so good way is:
-
-			if(ghost->objData.moveCD % 16 == 0){
-				al_draw_scaled_bitmap(...);
-			}
-			else if(ghost->objData.moveCD % 16 == 1){
-				al_draw_scaled_bitmap(...);
-			}...
-
-			since modulo operation is expensive, better avoid using it.
-	*/
-
+//	al_draw_scaled_bitmap(ghost->move_sprite, 0, 0,
+//		16, 16,
+//		drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+//		draw_region, draw_region, 0
+//	);
+    char dmsg[100];
+    sprintf(dmsg, "moveCD = %d", ghost->objData.moveCD);
+    game_log(dmsg);
 
 	int bitmap_x_offset = 0;
-	// [TODO] below is for animation usage, change the sprite you want to use.
+	// TODO: below is for animation usage, change the sprite you want to use.
 	if (ghost->status == FLEE) {
 		/*
 			al_draw_scaled_bitmap(...)
@@ -113,13 +99,45 @@ void ghost_draw(Ghost* ghost) {
 		*/
 	}
 	else {
-		/*
+        int ouo = (((ghost->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
 		switch (ghost->objData.facing)
 		{
-		case LEFT:
-			...
+		    case RIGHT:
+                al_draw_scaled_bitmap(ghost->move_sprite, (0 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            case LEFT:
+                al_draw_scaled_bitmap(ghost->move_sprite, (2 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            case UP:
+                al_draw_scaled_bitmap(ghost->move_sprite, (4 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            case DOWN:
+                al_draw_scaled_bitmap(ghost->move_sprite, (6 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            default:
+                al_draw_scaled_bitmap(ghost->move_sprite, 0, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
 		}
-		*/
 	}
 
 }
@@ -184,7 +202,7 @@ bool ghost_movable(Ghost* ghost, Map* M, Directions targetDirec, bool room) {
 }
 
 void ghost_toggle_FLEE(Ghost* ghost, bool setFLEE) {
-	// [TODO]
+	// TODO:
 	// TODO: Here is reserved for power bean implementation.
 	// The concept is "When pacman eats the power bean, only
 	// ghosts who are in state FREEDOM will change to state FLEE.
@@ -229,7 +247,7 @@ void ghost_move_script_GO_OUT(Ghost* ghost, Map* M) {
 		ghost->status = FREEDOM;
 }
 void ghost_move_script_FLEE(Ghost* ghost, Map* M, const Pacman * const pacman) {
-	// [TODO]
+	// TODO:
 	Directions shortestDirection = shortest_path_direc(M, ghost->objData.Coord.x, ghost->objData.Coord.y, pacman->objData.Coord.x, pacman->objData.Coord.y);
 	// Description:
 	// The concept here is to simulate ghosts running away from pacman while pacman is having power bean ability.
