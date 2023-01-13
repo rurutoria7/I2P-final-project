@@ -112,8 +112,10 @@ Map* create_map(const char * filepath) {
         // use fopen to create a file FILE* type
         // use pFile can fscanf do reading from file just like read from command line.
 
-        game_log("%s\n", filepath);
-        pFile = fopen("Assets/map_nthu.txt", "r");
+        game_log("%s", filepath);
+        game_log("%s", filepath);
+        game_log("%s", filepath);
+        pFile = fopen(filepath, "r");
         if (!pFile) {
             game_abort("error to open map file\n");
             return NULL;

@@ -6,6 +6,7 @@
 #include "utility.h"
 #include "scene_game.h"
 #include "scene_menu.h"
+#include "scene_game_over.h"
 #include "pacman_obj.h"
 #include "ghost.h"
 #include "map.h"
@@ -117,6 +118,11 @@ static void checkItem(void) {
     basic_map->map[Grid_y][Grid_x] = ' ';
 }
 static void status_update(void) {
+    // detect pacman eat up dots
+    if (basic_map->beansNum == get_map_core(basic_map)){
+        game_over = true;
+    }
+
 	for (int i = 0; i < GHOST_NUM; i++) {
 		if (ghosts[i]->status == GO_IN)
 			continue;
@@ -141,10 +147,9 @@ static void status_update(void) {
 static void update(void) {
 
 	if (game_over) {
-		/*
-			[TODO] start pman->death_anim_counter and schedule a game-over event (e.g change scene to menu) after Pacman's death animation finished
-			game_change_scene(...);
-		*/
+//			[TODO?] HOW TO play death anim
+        al_start_timer(pman->death_anim_counter);
+        game_change_scene(scene_game_over_create());
 		return;
 	}
 

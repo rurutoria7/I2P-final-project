@@ -34,7 +34,9 @@ add_executable(Allegro5Template
         Src/shared.c
         Src/shared.h
         Src/utility.c
-        Src/utility.h)
+        Src/utility.h
+        Src/scene_game_over.h
+        Src/scene_game_over.c)
 
 target_include_directories(Allegro5Template PUBLIC ${ALLEGRO5_INCLUDE_DIRS})
 target_compile_options(Allegro5Template PUBLIC ${ALLEGRO5_CFLAGS_OTHER})
