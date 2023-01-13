@@ -97,6 +97,7 @@ static void step(void) {
 			ghosts[i]->objData.moveCD -= ghosts[i]->speed;
 	}
 }
+
 static void checkItem(void) {
 	int Grid_x = pman->objData.Coord.x, Grid_y = pman->objData.Coord.y;
 	if (Grid_y >= basic_map->row_num - 1 || Grid_y <= 0 || Grid_x >= basic_map->col_num - 1 || Grid_x <= 0)
@@ -105,18 +106,24 @@ static void checkItem(void) {
 	// DONE: check which item you are going to eat and use `pacman_eatItem` to deal with it.
 	switch (basic_map->map[Grid_y][Grid_x])
 	{
-	case '.':
-		pacman_eatItem(pman, basic_map->map[Grid_y][Grid_x]);
-        basic_map->beansCount--;
-        break;
-	default:
-		break;
+        case '.':
+            pacman_eatItem(pman, basic_map->map[Grid_y][Grid_x]);
+            basic_map->beansCount--;
+            break;
+        case 'P':
+            for (int i = 0; i < GHOST_NUM; i++)
+                ghosts[i]->status = FLEE;
+            pman->powerUp = true;
+            al_start_timer(power_up_timer);
+        default:
+            break;
 	}
 	// [HACKATHON 1-4]
 	// erase the item you eat from map
 	// be careful no erasing the wall block.
     basic_map->map[Grid_y][Grid_x] = ' ';
 }
+
 static void status_update(void) {
     // detect pacman eat up dots
     if (basic_map->beansNum == get_map_core(basic_map)){
@@ -148,7 +155,7 @@ static void update(void) {
 
 	if (game_over) {
         al_start_timer(pman->death_anim_counter);
-        if (al_get_timer_count(pman->death_anim_counter) >= 70)
+        if (al_get_timer_count(pman->death_anim_counter) >= 90)
             game_change_scene(scene_game_over_create());
 		return;
 	}
@@ -159,6 +166,18 @@ static void update(void) {
 	pacman_move(pman, basic_map);
 	for (int i = 0; i < GHOST_NUM; i++) 
 		ghosts[i]->move_script(ghosts[i], basic_map, pman);
+}
+
+void draw_debug(void){
+    char msg[100];
+    sprintf(msg, "ghost status = %d\n", ghosts[0]->status);
+    al_draw_text(
+            menuFont,
+            al_map_rgb(255, 255, 255),
+            SCREEN_W * 1.0 / 5, SCREEN_H * 4.5 / 5,
+            ALLEGRO_ALIGN_CENTER,
+            msg
+    );
 }
 
 static void draw(void) {
@@ -191,6 +210,7 @@ static void draw(void) {
 		draw_hitboxes();
 	}
 
+    draw_debug();
 }
 
 static void draw_hitboxes(void) {

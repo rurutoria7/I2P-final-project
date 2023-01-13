@@ -18,7 +18,7 @@ typedef enum {
 	BLOCKED,						 // stay inside the ghost room
 	GO_OUT,							 // going out the ghost room
 	FREEDOM,					     // free at the map
-	GO_IN,							 // going back to the ghost room 
+	GO_IN,							 // going back to the ghost room (eye ball)
 	FLEE							 // pacman powered up
 } GhostStatus;
 

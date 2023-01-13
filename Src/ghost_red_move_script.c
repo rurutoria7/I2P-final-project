@@ -20,7 +20,7 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
 	static Directions proba[4]; // possible movement
 	int cnt = 0;
 	for (Directions i = 1; i <= 4; i++)
-		if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->last_dir, i))
+		if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->objData.facing, i))
             proba[cnt++] = i;
     if (cnt == 0)
         for (Directions i = 1; i <= 4; i++)
@@ -28,7 +28,6 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
                 proba[cnt++] = i;
     int dir_to_move = proba[generateRandomNumber(0,cnt-1)];
 	ghost_NextMove(ghost, dir_to_move);
-    ghost->last_dir = dir_to_move;
 
 	// [DONE] (Not in Hackathon)
 	// Description:
@@ -36,7 +35,6 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
 	// which means moving in random direction.
 	// But your random strategy have to designed carefully so that ghost won't walk back and forth.
 	// (The code here DO perform walking back and forth.)
-	
 }
 
 static void ghost_red_move_script_BLOCKED(Ghost* ghost, Map* M) {

@@ -3,6 +3,7 @@
 #include "ghost.h"
 #include "map.h"
 #include "pacman_obj.h"
+#include "scene_game.h"
 
 /* global variables*/
 // [ NOTE ]
@@ -63,6 +64,7 @@ Ghost* ghost_create(int flag) {
 	}
 	return ghost;
 }
+
 void ghost_destory(Ghost* ghost) {
     al_destroy_bitmap(ghost->move_sprite);
     al_destroy_bitmap(ghost->dead_sprite);
@@ -86,10 +88,15 @@ void ghost_draw(Ghost* ghost) {
 	int bitmap_x_offset = 0;
 	// TODO: below is for animation usage, change the sprite you want to use.
 	if (ghost->status == FLEE) {
-		/*
-			al_draw_scaled_bitmap(...)
-		*/
-	}
+        int ouo = (((ghost->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
+        al_draw_scaled_bitmap(ghost->flee_sprite,
+                              ouo*16,
+                              0,
+                              16,16,
+                              drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                              draw_region, draw_region, 0
+        );
+    }
 	else if (ghost->status == GO_IN) {
 		/*
 		switch (ghost->objData.facing)
@@ -100,46 +107,16 @@ void ghost_draw(Ghost* ghost) {
 	}
 	else {
         int ouo = (((ghost->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
-		switch (ghost->objData.facing)
-		{
-		    case RIGHT:
-                al_draw_scaled_bitmap(ghost->move_sprite, (0 + ouo)*16, 0,
-                                      16, 16,
-                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-                                      draw_region, draw_region, 0
-                );
-                break;
-            case LEFT:
-                al_draw_scaled_bitmap(ghost->move_sprite, (2 + ouo)*16, 0,
-                                      16, 16,
-                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-                                      draw_region, draw_region, 0
-                );
-                break;
-            case UP:
-                al_draw_scaled_bitmap(ghost->move_sprite, (4 + ouo)*16, 0,
-                                      16, 16,
-                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-                                      draw_region, draw_region, 0
-                );
-                break;
-            case DOWN:
-                al_draw_scaled_bitmap(ghost->move_sprite, (6 + ouo)*16, 0,
-                                      16, 16,
-                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-                                      draw_region, draw_region, 0
-                );
-                break;
-            default:
-                al_draw_scaled_bitmap(ghost->move_sprite, 0, 0,
-                                      16, 16,
-                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-                                      draw_region, draw_region, 0
-                );
-                break;
-		}
+        int face_to_asset_ord[] = {0, 2, 1, 0, 3};
+        int face = (1 <= ghost->objData.facing && ghost->objData.facing <= 4)? ghost->objData.facing : 1;
+       al_draw_scaled_bitmap(ghost->move_sprite,
+                  (face_to_asset_ord[face]*2 + ouo)*16,
+                  0,
+                  16,16,
+                  drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                  draw_region, draw_region, 0
+        );
 	}
-
 }
 void ghost_NextMove(Ghost* ghost, Directions next) {
 	ghost->objData.nextTryMove = next;
@@ -254,6 +231,20 @@ void ghost_move_script_FLEE(Ghost* ghost, Map* M, const Pacman * const pacman) {
 	// To achieve this, think in this way. We first get the direction to shortest path to pacman, call it K (K is either UP, DOWN, RIGHT or LEFT).
 	// Then we choose other available direction rather than direction K.
 	// In this way, ghost will escape from pacman.
-
+    static Directions proba[4]; // possible movement
+    int cnt = 0;
+    for (Directions i = 1; i <= 4; i++)
+        if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->objData.facing, i) && i != shortestDirection)
+            proba[cnt++] = i;
+    if (cnt == 0)
+        for (Directions i = 1; i <= 4; i++)
+            if (ghost_movable(ghost, M, i, true) && !is_backward(ghost->objData.facing, i))
+                proba[cnt++] = i;
+    if (cnt == 0)
+        for (Directions i = 1; i <= 4; i++)
+            if (ghost_movable(ghost, M, i, true))
+                proba[cnt++] = i;
+    int dir_to_move = proba[generateRandomNumber(0,cnt-1)];
+    ghost_NextMove(ghost, dir_to_move);
 }
 

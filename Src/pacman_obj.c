@@ -204,6 +204,7 @@ void pacman_move(Pacman* pacman, Map* M) {
 	pacman->objData.facing = pacman->objData.preMove;
 	pacman->objData.moveCD = GAME_TICK_CD;
 }
+
 void pacman_eatItem(Pacman* pacman, const char Item) {
 	switch (Item)
 	{
