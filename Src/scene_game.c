@@ -133,7 +133,7 @@ static void status_update(void) {
 		// [NOTE]
 		// You should have some branch here if you want to implement power bean mode.
 		// Uncomment Following Code
-		if(!cheat_mode && RecAreaOverlap(getDrawArea(pman->objData, GAME_TICK), getDrawArea(ghosts[i]->objData, GAME_TICK)))
+		if(!cheat_mode && RecAreaOverlap(getDrawArea(pman->objData, GAME_TICK_CD), getDrawArea(ghosts[i]->objData, GAME_TICK_CD)))
 		{
 			game_log("collide with ghost\n");
 			al_rest(1.0);
@@ -147,9 +147,9 @@ static void status_update(void) {
 static void update(void) {
 
 	if (game_over) {
-//			TODO: play death anim
         al_start_timer(pman->death_anim_counter);
-        game_change_scene(scene_game_over_create());
+        if (al_get_timer_count(pman->death_anim_counter) >= 70)
+            game_change_scene(scene_game_over_create());
 		return;
 	}
 

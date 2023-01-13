@@ -113,17 +113,18 @@ void pacman_destroy(Pacman* pman) {
 
 
 void pacman_draw(Pacman* pman) {
-	/*
-		TODO: Draw Pacman and animations
-		hint: use pman->objData.moveCD to determine which frame of the animation to draw, you may refer to discription in ghost_draw in ghost.c
-	*/
+
 	RecArea drawArea = getDrawArea(pman->objData, GAME_TICK_CD);
 	
 	int offset = 0;
 	if (game_over) {
-		/*
-			hint: instead of using pman->objData.moveCD, use Pacman's death_anim_counter to create animation
-		*/
+        int timer_count = al_get_timer_count(pman->death_anim_counter);
+        game_log("(timer_count/5) = %d", (timer_count/5));
+        al_draw_scaled_bitmap(pman->die_sprite, (timer_count/5*16), 0,
+                              16, 16,
+                              drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                              draw_region, draw_region, 0
+        );
 	}
 	else {
         int ouo = (((pman->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
