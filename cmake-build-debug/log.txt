@@ -1,0 +1,23 @@
+There are total 16 supported mouse buttons
+Allegro5 initialized
+Game begin
+loaded font: Assets/Minecraft.ttf with size 30
+loaded font: Assets/OpenSans-Regular.ttf with size 15
+loaded audio: Assets/Music/original_theme.ogg
+loaded audio: Assets/Music/pacman-chomp.ogg
+loaded audio: Assets/Music/pacman_death.ogg
+Game initialized
+Menu scene created
+Change scene from (unnamed) to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
+Game start event loop
+Key with keycode 67 down
+Select_maps scene created
+Change scene from Menu to Select_maps
+Key with keycode 67 down
+Key with keycode 70 down
+Key with keycode 67 down
+Window close button clicked
+Game end

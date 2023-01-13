@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "Allegro5Template"
+  "Allegro5Template.pdb"
+  "CMakeFiles/Allegro5Template.dir/Src/game.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/game.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/ghost.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/ghost.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/ghost_red_move_script.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/ghost_red_move_script.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/main.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/main.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/map.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/map.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/pacman_obj.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/pacman_obj.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_game.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_game.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_game_over.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_game_over.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_menu.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_menu.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_menu_object.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_menu_object.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_select_map.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_select_map.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_settings.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/scene_settings.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/selector.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/selector.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/shared.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/shared.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/text_button.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/text_button.c.o.d"
+  "CMakeFiles/Allegro5Template.dir/Src/utility.c.o"
+  "CMakeFiles/Allegro5Template.dir/Src/utility.c.o.d"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/Allegro5Template.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

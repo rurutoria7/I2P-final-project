@@ -1,0 +1,3 @@
+/Users/rurutoria7/Repos/Final_Codes/cmake-build-debug/CMakeFiles/Allegro5Template.dir
+/Users/rurutoria7/Repos/Final_Codes/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rurutoria7/Repos/Final_Codes/cmake-build-debug/CMakeFiles/rebuild_cache.dir
