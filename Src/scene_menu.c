@@ -10,6 +10,7 @@
 #include "scene_settings.h"
 #include "scene_game.h"
 #include "scene_menu.h"
+#include "scene_select_map.h"
 #include "utility.h"
 #include "shared.h"
 
@@ -117,7 +118,7 @@ static void on_key_down(int keycode) {
 
 	switch (keycode) {
 		case ALLEGRO_KEY_ENTER:
-			game_change_scene(scene_main_create());
+			game_change_scene(scene_select_map_create());
 			break;
 		default:
 			break;
