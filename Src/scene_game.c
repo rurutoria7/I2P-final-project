@@ -85,7 +85,6 @@ static void init(void) {
 	power_up_timer = al_create_timer(1.0f); // 1 tick / sec
 	if (!power_up_timer)
 		game_abort("Error on create timer\n");
-	return ;
 }
 
 static void step(void) {
@@ -107,6 +106,8 @@ static void checkItem(void) {
 	{
 	case '.':
 		pacman_eatItem(pman, basic_map->map[Grid_y][Grid_x]);
+        basic_map->beansCount--;
+        break;
 	default:
 		break;
 	}
@@ -141,8 +142,7 @@ static void update(void) {
 
 	if (game_over) {
 		/*
-			[TODO]
-			start pman->death_anim_counter and schedule a game-over event (e.g change scene to menu) after Pacman's death animation finished
+			[TODO] start pman->death_anim_counter and schedule a game-over event (e.g change scene to menu) after Pacman's death animation finished
 			game_change_scene(...);
 		*/
 		return;
@@ -161,11 +161,16 @@ static void draw(void) {
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	
-	//	[TODO]
-	//	Draw scoreboard, something your may need is sprinf();
-	/*
-		al_draw_text(...);
-	*/
+	//	[TODO] Draw scoreboard, something your may need is sprinf();
+    char s[20] = "";
+    sprintf(s, "Score: %d", get_map_core(basic_map));
+    al_draw_text(
+            menuFont,
+            al_map_rgb(255, 255, 0),
+            400, 10,
+            ALLEGRO_ALIGN_CENTER,
+            s
+    );
 
 	draw_map(basic_map);
 

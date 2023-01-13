@@ -380,3 +380,7 @@ static	uint16_t end;
 	}
 	return steped[endGridy][endGridx];
 }
+
+int get_map_core(const Map* M){
+    return M->beansNum - M->beansCount;
+}

@@ -24,4 +24,6 @@ bool is_wall_block(Map* M, int index_x, int index_y);
 bool is_room_block(Map* M, int index_x, int index_y);
 bool is_wall_point(Map* M , float x, float y);
 bool is_room_point(Map* M , float x, float y);
+
+int get_map_core(const Map*);
 #endif
