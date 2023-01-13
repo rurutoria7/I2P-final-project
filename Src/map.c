@@ -87,10 +87,10 @@ const char* default_map[] = {
 Map* create_map(const char * filepath) {
 
 // [HACKATHON 0]
-// DONE: Read the map from "Assets/map_nthu.backupp.txt"
+// DONE: Read the map from "Assets/map_avalon.txt"
 // ~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!~~~~~~~~~
 // Description: So for this part, you don't have to really finish them during hackathon.
-// You can just copy the map data in "map_nthu.backupp.txt" to the array `default_map`
+// You can just copy the map data in "map_avalon.txt" to the array `default_map`
 // Or just use the array `nthu_map` in your Map Data. 
 // But we suggest you to finish this part if you have time since this is one of 
 // the grading part in Basic part in Final_Project_Rules.

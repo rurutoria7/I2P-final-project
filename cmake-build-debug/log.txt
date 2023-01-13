@@ -16,8 +16,309 @@ Game start event loop
 Key with keycode 67 down
 Select_maps scene created
 Change scene from Menu to Select_maps
+Start scene created
+Change scene from Select_maps to Start
+Assets/map_aincrad.txt
+loaded image: Assets/pacman_move.png
+loaded image: Assets/pacman_die.png
+creating ghost 0
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_red.png
+creating ghost 1
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_pink.png
+creating ghost 2
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_orange.png
+creating ghost 3
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_blue.png
+Key with keycode 217 down
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 4 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 23 down
+collide with ghost
+
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 23 down
+collide with ghost
+
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 4 down
+Key with keycode 4 down
+Key with keycode 19 down
+collide with ghost
+
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+collide with ghost
+
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 1 down
+collide with ghost
+
+Key with keycode 19 down
+(timer_count/5) = 0
+(timer_count/5) = 0
+(timer_count/5) = 0
+(timer_count/5) = 0
+(timer_count/5) = 0
+(timer_count/5) = 0
+(timer_count/5) = 1
+(timer_count/5) = 1
+(timer_count/5) = 1
+(timer_count/5) = 1
+(timer_count/5) = 2
+(timer_count/5) = 2
+(timer_count/5) = 2
+(timer_count/5) = 2
+(timer_count/5) = 2
+(timer_count/5) = 3
+(timer_count/5) = 3
+(timer_count/5) = 3
+(timer_count/5) = 3
+(timer_count/5) = 3
+(timer_count/5) = 4
+(timer_count/5) = 4
+(timer_count/5) = 4
+(timer_count/5) = 4
+(timer_count/5) = 5
+(timer_count/5) = 5
+(timer_count/5) = 5
+(timer_count/5) = 5
+(timer_count/5) = 5
+(timer_count/5) = 6
+(timer_count/5) = 6
+(timer_count/5) = 6
+(timer_count/5) = 6
+(timer_count/5) = 6
+(timer_count/5) = 7
+(timer_count/5) = 7
+(timer_count/5) = 7
+(timer_count/5) = 7
+(timer_count/5) = 7
+(timer_count/5) = 8
+(timer_count/5) = 8
+(timer_count/5) = 8
+(timer_count/5) = 8
+(timer_count/5) = 9
+(timer_count/5) = 9
+(timer_count/5) = 9
+(timer_count/5) = 9
+(timer_count/5) = 9
+(timer_count/5) = 10
+(timer_count/5) = 10
+(timer_count/5) = 10
+(timer_count/5) = 10
+(timer_count/5) = 10
+(timer_count/5) = 11
+(timer_count/5) = 11
+(timer_count/5) = 11
+(timer_count/5) = 11
+(timer_count/5) = 12
+(timer_count/5) = 12
+(timer_count/5) = 12
+(timer_count/5) = 12
+(timer_count/5) = 12
+(timer_count/5) = 13
+(timer_count/5) = 13
+(timer_count/5) = 13
+(timer_count/5) = 13
+(timer_count/5) = 13
+(timer_count/5) = 14
+(timer_count/5) = 14
+(timer_count/5) = 14
+(timer_count/5) = 14
+(timer_count/5) = 15
+(timer_count/5) = 15
+(timer_count/5) = 15
+(timer_count/5) = 15
+(timer_count/5) = 15
+(timer_count/5) = 16
+(timer_count/5) = 16
+(timer_count/5) = 16
+(timer_count/5) = 16
+(timer_count/5) = 16
+(timer_count/5) = 17
+(timer_count/5) = 17
+(timer_count/5) = 17
+(timer_count/5) = 17
+(timer_count/5) = 18
+Game-over scene created
+Change scene from Start to Game Over
 Key with keycode 67 down
-Key with keycode 70 down
+Menu scene created
+Change scene from Game Over to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
+Settings scene created
+Change scene from Menu to Settings
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_block.png
+music_volume = 9, effect_volume = 10
+music_volume = 8, effect_volume = 10
+music_volume = 7, effect_volume = 10
+music_volume = 6, effect_volume = 10
+music_volume = 6, effect_volume = 10
+Menu scene created
+Change scene from Settings to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
+Settings scene created
+Change scene from Menu to Settings
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_block.png
+music_volume = 6, effect_volume = 9
+music_volume = 6, effect_volume = 8
+music_volume = 6, effect_volume = 7
+music_volume = 6, effect_volume = 6
+music_volume = 6, effect_volume = 5
+music_volume = 6, effect_volume = 4
+music_volume = 6, effect_volume = 4
+Menu scene created
+Change scene from Settings to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
+Settings scene created
+Change scene from Menu to Settings
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_block.png
+music_volume = 7, effect_volume = 4
+music_volume = 8, effect_volume = 4
+music_volume = 9, effect_volume = 4
+music_volume = 10, effect_volume = 4
+music_volume = 10, effect_volume = 4
+Menu scene created
+Change scene from Settings to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
+Settings scene created
+Change scene from Menu to Settings
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_down.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_up.png
+loaded image: Assets/volume_block.png
+music_volume = 10, effect_volume = 4
+music_volume = 10, effect_volume = 5
+music_volume = 10, effect_volume = 6
+music_volume = 10, effect_volume = 7
+music_volume = 10, effect_volume = 8
+music_volume = 10, effect_volume = 8
+Menu scene created
+Change scene from Settings to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
 Key with keycode 67 down
+Select_maps scene created
+Change scene from Menu to Select_maps
+Start scene created
+Change scene from Select_maps to Start
+Assets/map_nthu.txt
+loaded image: Assets/pacman_move.png
+loaded image: Assets/pacman_die.png
+creating ghost 0
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_red.png
+creating ghost 1
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_pink.png
+creating ghost 2
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_orange.png
+creating ghost 3
+
+loaded image: Assets/ghost_flee.png
+loaded image: Assets/ghost_dead.png
+loaded image: Assets/ghost_move_blue.png
 Window close button clicked
 Game end

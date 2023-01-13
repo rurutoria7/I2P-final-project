@@ -6,6 +6,6 @@
 #define SCENE_GAME_H
 #include "game.h"
 
-Scene scene_main_create(void);
+Scene scene_main_create(char *);
 
 #endif

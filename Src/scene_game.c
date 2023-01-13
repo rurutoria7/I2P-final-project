@@ -45,6 +45,8 @@ static void on_mouse_down(void);
 static void render_init_screen(void);
 static void draw_hitboxes(void);
 
+static char *map_filepath;
+
 static void init(void) {
 	game_over = false;
 	game_main_Score = 0;
@@ -52,7 +54,7 @@ static void init(void) {
 //	basic_map = create_map(NULL);
 	// [DONE]
 	// Create map from .txt file and design your own map !!
-    basic_map = create_map("Assets/map_nthu.txt");
+    basic_map = create_map(map_filepath);
 	if (!basic_map) {
 		game_abort("error on creating map");
 	}	
@@ -349,7 +351,8 @@ static void render_init_screen(void) {
 // Define your normal function prototypes below.
 
 // The only function that is shared across files.
-Scene scene_main_create(void) {
+Scene scene_main_create(char *filepath) {
+    map_filepath = filepath;
 	Scene scene;
 	memset(&scene, 0, sizeof(Scene));
 	scene.name = "Start";
