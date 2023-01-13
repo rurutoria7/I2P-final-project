@@ -112,9 +112,11 @@ static void checkItem(void) {
             break;
         case 'P':
             for (int i = 0; i < GHOST_NUM; i++)
-                ghosts[i]->status = FLEE;
+                if (ghosts[i]->status == FREEDOM)
+                    ghosts[i]->status = FLEE;
             pman->powerUp = true;
-            al_start_timer(power_up_timer);
+            al_set_timer_count(power_up_timer, 0);
+            al_resume_timer(power_up_timer);
         default:
             break;
 	}
@@ -149,6 +151,14 @@ static void status_update(void) {
 			break;
 		}
 	}
+
+    if (al_get_timer_count(power_up_timer) > power_up_duration){
+        for (int i = 0; i < GHOST_NUM; i++)
+            if (ghosts[i]->status == FLEE)
+                ghosts[i]->status = FREEDOM;
+        pman->powerUp = false;
+        al_stop_timer(power_up_timer);
+    }
 }
 
 static void update(void) {
@@ -170,7 +180,7 @@ static void update(void) {
 
 void draw_debug(void){
     char msg[100];
-    sprintf(msg, "ghost status = %d\n", ghosts[0]->status);
+    sprintf(msg, "ghost status = %d\n powerup timer = %d\n", ghosts[0]->status, al_get_timer_count(power_up_timer));
     al_draw_text(
             menuFont,
             al_map_rgb(255, 255, 255),
