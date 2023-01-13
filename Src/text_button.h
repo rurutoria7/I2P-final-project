@@ -17,7 +17,7 @@ typedef struct TextButton {
 } TextButton;
 
 TextButton textButton_create(float x, float y, float w, float h, const char* text, ALLEGRO_COLOR color);
-void drawTextButton(TextButton button);
-bool textButtonHover(TextButton button, int mouse_x, int mouse_y);
+void drawTextButton(TextButton *button);
+void checkTextButtonHovered(TextButton *button, int mouse_x, int mouse_y);
 
 #endif

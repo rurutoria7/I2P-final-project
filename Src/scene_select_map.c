@@ -22,12 +22,12 @@ static void draw(void ){
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_text(menuFont, al_map_rgb(240, 240, 240), SCREEN_W * 1.0 / 5, SCREEN_H * 2.2 / 5, ALLEGRO_ALIGN_CENTRE, "Choose Map:");
     drawSelector(&map_selector);
-    drawTextButton(exit_btn);
+    drawTextButton(&exit_btn);
 }
 
 static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
     checkSelectorHovered(&map_selector, mouse_x, mouse_y);
-    exit_btn.hovered = textButtonHover(exit_btn, mouse_x, mouse_y);
+    checkTextButtonHovered(&exit_btn, mouse_x, mouse_y);
 }
 
 static void on_mouse_down() {

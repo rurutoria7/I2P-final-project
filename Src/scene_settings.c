@@ -80,7 +80,7 @@ static void draw(void ){
                               0);
     }
 
-    drawTextButton(exit_btn);
+    drawTextButton(&exit_btn);
 }
 
 static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
@@ -91,7 +91,7 @@ static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
     music_vol_up_btn.hovered = buttonHover(music_vol_up_btn, mouse_x, mouse_y);
     effect_vol_down_btn.hovered = buttonHover(effect_vol_down_btn, mouse_x, mouse_y);
     effect_vol_up_btn.hovered = buttonHover(effect_vol_up_btn, mouse_x, mouse_y);
-    exit_btn.hovered = textButtonHover(exit_btn, mouse_x, mouse_y);
+    checkTextButtonHovered(&exit_btn, mouse_x, mouse_y);
 }
 
 static void on_mouse_down() {
