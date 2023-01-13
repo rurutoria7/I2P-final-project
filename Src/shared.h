@@ -17,6 +17,7 @@ extern ALLEGRO_SAMPLE* themeMusic;
 extern ALLEGRO_SAMPLE* PACMAN_MOVESOUND;
 extern ALLEGRO_SAMPLE* PACMAN_DEATH_SOUND;
 extern ALLEGRO_FONT* menuFont;
+extern const float DEFAULT_VOLUME;
 extern int fontSize;
 extern float music_volume;
 extern float effect_volume;

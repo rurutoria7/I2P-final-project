@@ -12,9 +12,11 @@ ALLEGRO_SAMPLE* themeMusic = NULL;
 ALLEGRO_SAMPLE* PACMAN_MOVESOUND = NULL;
 ALLEGRO_SAMPLE* PACMAN_DEATH_SOUND = NULL;
 ALLEGRO_FONT* menuFont = NULL;
+ALLEGRO_FONT* bodyFont = NULL;
+const float DEFAULT_VOLUME = 0.5;
 int fontSize = 30;
-float music_volume = 0.5;
-float effect_volume = 0.5;
+float music_volume = DEFAULT_VOLUME;
+float effect_volume = DEFAULT_VOLUME;
 bool gameDone = false;
 
 /*
@@ -26,6 +28,7 @@ bool gameDone = false;
 void shared_init(void) {
 	
 	menuFont = load_font("Assets/Minecraft.ttf", fontSize);
+    bodyFont = load_font("Assets/OpenSans-Regular.ttf", fontSize/2);
 	themeMusic = load_audio("Assets/Music/original_theme.ogg");
 	PACMAN_MOVESOUND = load_audio("Assets/Music/pacman-chomp.ogg");
 	PACMAN_DEATH_SOUND = load_audio("Assets/Music/pacman_death.ogg");
