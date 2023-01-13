@@ -118,13 +118,6 @@ void pacman_draw(Pacman* pman) {
 		hint: use pman->objData.moveCD to determine which frame of the animation to draw, you may refer to discription in ghost_draw in ghost.c
 	*/
 	RecArea drawArea = getDrawArea(pman->objData, GAME_TICK_CD);
-
-	//Draw default image
-	al_draw_scaled_bitmap(pman->move_sprite, 0, 0,
-		16, 16,
-		drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
-		draw_region, draw_region, 0
-	);
 	
 	int offset = 0;
 	if (game_over) {
@@ -133,13 +126,45 @@ void pacman_draw(Pacman* pman) {
 		*/
 	}
 	else {
-		/*
-			switch(pman->objData.facing)
-			{
-			case LEFT:
-				...
-			}
-		*/
+        int ouo = (((pman->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
+        switch (pman->objData.facing)
+        {
+            case RIGHT:
+                al_draw_scaled_bitmap(pman->move_sprite, (0 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            case LEFT:
+                al_draw_scaled_bitmap(pman->move_sprite, (2 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            case UP:
+                al_draw_scaled_bitmap(pman->move_sprite, (4 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            case DOWN:
+                al_draw_scaled_bitmap(pman->move_sprite, (6 + ouo)*16, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+            default:
+                al_draw_scaled_bitmap(pman->move_sprite, 0, 0,
+                                      16, 16,
+                                      drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
+                                      draw_region, draw_region, 0
+                );
+                break;
+        }
 	}
 }
 void pacman_move(Pacman* pacman, Map* M) {
