@@ -126,7 +126,7 @@ static void status_update(void) {
 	for (int i = 0; i < GHOST_NUM; i++) {
 		if (ghosts[i]->status == GO_IN)
 			continue;
-		// [TODO] on pacman and ghosts collide, power bean mode.
+		// TODO: on pacman and ghosts collide, power bean mode.
 		// use `getDrawArea(..., GAME_TICK_CD)` and `RecAreaOverlap(..., GAME_TICK_CD)` functions to detect
 		// if pacman and ghosts collide with each other.
 		// And perform corresponding operations.
@@ -147,7 +147,7 @@ static void status_update(void) {
 static void update(void) {
 
 	if (game_over) {
-//			[TODO?] HOW TO play death anim
+//			TODO: play death anim
         al_start_timer(pman->death_anim_counter);
         game_change_scene(scene_game_over_create());
 		return;
@@ -166,7 +166,7 @@ static void draw(void) {
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	
-	//	[TODO] Draw scoreboard, something your may need is sprinf();
+	//	TODO: Draw scoreboard, something your may need is sprinf();
     char s[20] = "";
     sprintf(s, "Score: %d", get_map_core(basic_map));
     al_draw_text(

@@ -99,8 +99,7 @@ void setRecArea(RecArea* RA, float x, float y, float w, float h) {
 }
 // Hakathon
 bool RecAreaOverlap(const RecArea RA,const RecArea RB) {
-	// [TODO?]
-	// Detect if two RecArea is overlapped.
+	// TODO: Detect if two RecArea is overlapped.
 	float RA_x2 = RA.x + RA.w;
 	float RA_y2 = RA.y + RA.h;
 	float RB_x2 = RB.x + RB.w;

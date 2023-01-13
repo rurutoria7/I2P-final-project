@@ -76,7 +76,7 @@ Pacman* pacman_create() {
 	*/
 	/* Init pman data */
 	/* set starting point, Size, */
-	/* TODO? */
+	/* DONE? */
 	/* hint / just put it */
 	pman->objData.Coord.x = 24;
 	pman->objData.Coord.y = 24;
@@ -114,7 +114,7 @@ void pacman_destroy(Pacman* pman) {
 
 void pacman_draw(Pacman* pman) {
 	/*
-		[TODO] Draw Pacman and animations
+		TODO: Draw Pacman and animations
 		hint: use pman->objData.moveCD to determine which frame of the animation to draw, you may refer to discription in ghost_draw in ghost.c
 	*/
 	RecArea drawArea = getDrawArea(pman->objData, GAME_TICK_CD);
