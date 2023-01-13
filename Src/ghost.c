@@ -83,11 +83,12 @@ void ghost_draw(Ghost* ghost) {
 //	);
 
 	if (ghost->status == FLEE) {
-        int ouo = (((ghost->objData.moveCD>>5)<<5)&((1<<6)-1)) > 0;
+        int color = ((((ghost->objData.moveCD >> 5) << 5) & ((1 << 6) - 1)) > 0) && ghost->is_near_power_up_expire;
+        int two_type_step = (((ghost->objData.moveCD >> 5) << 5) & ((1 << 6) - 1)) > 0;
         al_draw_scaled_bitmap(ghost->flee_sprite,
-                              ouo*16,
+                              (color * 2 + two_type_step) * 16,
                               0,
-                              16,16,
+                              16, 16,
                               drawArea.x + fix_draw_pixel_offset_x, drawArea.y + fix_draw_pixel_offset_y,
                               draw_region, draw_region, 0
         );

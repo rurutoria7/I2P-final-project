@@ -36,6 +36,7 @@ typedef struct Ghost{
 	script_func_ptr move_script;
 	int speed;
 	int64_t previous_timer_val;
+    bool is_near_power_up_expire;
 	GhostType typeFlag;
 	GhostStatus status;
 	ALLEGRO_BITMAP* move_sprite;

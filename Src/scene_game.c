@@ -111,9 +111,12 @@ static void checkItem(void) {
             basic_map->beansCount--;
             break;
         case 'P':
-            for (int i = 0; i < GHOST_NUM; i++)
-                if (ghosts[i]->status == FREEDOM)
+            for (int i = 0; i < GHOST_NUM; i++){
+                if (ghosts[i]->status == FREEDOM){
                     ghosts[i]->status = FLEE;
+                    ghosts[i]->is_near_power_up_expire = false;
+                }
+            }
             pman->powerUp = true;
             al_set_timer_count(power_up_timer, 0);
             al_resume_timer(power_up_timer);
@@ -151,6 +154,14 @@ static void status_update(void) {
 			break;
 		}
 	}
+
+    for (int i = 0; i < GHOST_NUM; i++){
+        if (ghosts[i]->status == FLEE){
+            if (al_get_timer_count(power_up_timer) + 4 > power_up_duration){
+                ghosts[i]->is_near_power_up_expire = true;
+            }
+        }
+    }
 
     if (al_get_timer_count(power_up_timer) > power_up_duration){
         for (int i = 0; i < GHOST_NUM; i++)
